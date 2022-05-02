@@ -38,10 +38,9 @@ wt = [randint(10, 500) for x in range(1000)]
 W = 4000
 n = len(val)
 
-# k = sorted([(x, y) for x, y in zip(val, wt)], key=lambda x: x[1])
-# val = [x[0] for x in k]
-# wt = [x[1] for x in k]
-
 t = time.time()
-print(knapsack(W, wt, val, n))
-print(-(t - time.time()))
+print(knapsack1(W, wt, val, n))
+print('knapsack1 runtime:',-(t - time.time()))
+t = time.time()
+print(knapsack2(W, wt, val, n))
+print('knapsack2 runtime:',-(t - time.time()))
