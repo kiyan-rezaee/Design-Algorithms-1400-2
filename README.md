@@ -1,21 +1,18 @@
 <body dir="rtl" lang="fa-IR">
 <h1 align="center"> تمرینات تحویلی درس طراحی و تحلیل الگوریتم ها</h1>
-<hr>
 <h2>اعضای گروه:</h2>
 <b>
     <ul>
-        <li><font size = "5">کیان رضایی</font></li>
-        </font>
+        <li><font size = "5">کیان رضایی</font></li></font>
         <li><font size = "5">علی داداش زاده</font></li>
         <li><font size = "5">سید وحید عقیل زاده</font></li>
         <li><font size = "5">سینا پیمان</font></li>
     </ul>
 </b>
-<hr>
 <h2>مسئله کوله پشتی 0,1</h2>
 <ul>
 <li>
-<font size = "5">مقدمه
+<font size = "5">مقدمه:
 </font>
 </li>
 <font size = "4">
@@ -34,7 +31,7 @@
         تا بعد از حل هر زیر مسئله مقدار آن را در ماتریس ذخیره کنیم.
 </p>
 </font>
-<font size='5'><li>مسئله کوله پشتی</li></font>
+<font size='5'><li>مسئله کوله پشتی:</li></font>
 <font size='4'>
 <p  align='justify'>
         مسئله کوله پشتی 0,1 بدین شکل مطرح میشود: <br>
@@ -43,7 +40,7 @@
         او میخواهد با ارزش ترین بار ممکن را بر دارد، اما بیشترین باری را که میتواند در کوله پشتی اش حمل کند، W پوند است که که مقداری صحیح است. چه اشیایی را باید بردارد؟
 </p>
 </font>
-<font size='5'><li>حل مسئله کوله پشتی 0,1
+<font size='5'><li>حل مسئله کوله پشتی 0,1:
 </li>
 </font>
 <font size = "4">
@@ -121,31 +118,32 @@ else:
 
 </div>
 <hr>
-<h2>
-پیاده سازی نهایی الگوریتم : 
-</h2>
+<h3>
+پیاده سازی نهایی الگوریتم: 
+</h3>
 <div alighn="left">
 
 ```python
-K = [[0 for x in range(W + 1)] for x in range(n + 1)]
+def knapsack1():
+    K = [[0 for x in range(W + 1)] for x in range(n + 1)]
 
-for i in range(n + 1):
-    for w in range(W + 1):
-        if i == 0 or w == 0:
-            K[i][w] = 0
-        elif wt[i - 1] <= w:
-            K[i][w] = max(val[i - 1] + K[i - 1][w - wt[i - 1]], K[i - 1][w])
-        else:
-            K[i][w] = K[i - 1][w]
+    for i in range(n + 1):
+        for w in range(W + 1):
+            if i == 0 or w == 0:
+                K[i][w] = 0
+            elif wt[i - 1] <= w:
+                K[i][w] = max(val[i - 1] + K[i - 1][w - wt[i - 1]], K[i - 1][w])
+            else:
+                K[i][w] = K[i - 1][w]
 
-return K[n][W]
+    return K[n][W]
 ```
 
 </div>
 <font size = '5'>
 توضیح ورودی های الگوریتم: 
 </font>
-
+<div align='right'>
 <br>
 <ul>
 <li>
@@ -167,7 +165,74 @@ wt : جرم هر شی
 val : ارزش هر شی
 </font>
 </li>
-</ol>
+</ul>
+<br>
+<font size = '5'>
+مرتبه زمانی و حافظه مصرفی: 
+</font>
+
+<br>
+<ul>
+<li>
+<font size = '4'>
+مرتبه زمانی : O(nW)
+</li>
+<li>
+مرتبه حافظه مصرفی : O(nW)
+</font>
+</li>
+</li>
+</ul>
+
 <br>
 
+<hr>
+<h2>بهینه کردن الگوریتم ارائه شده: </h2>
+<font size='4'>
+<p align='justify'>
+همانطور که در بالا دیدیم مرتبه زمان اجرا و مرتبه حافظه مصرفی O(nW) میباشد. اما در رویکرد جدید سعی میکنیم که 
+مرتبه حافظه مصرفی را کاهش دهیم. در الگوریتم بالا برای هر  شی یک سطر در نظر میگرفتیم و برای محاسبه سطر های بعد از سطر بالایی آن استفاده میکردیم، برای بهینه سازی میتوانیم فقط سطر آخر را ‌ذخیره کنیم و سطر جدید را روی همان سطر بازنویسی کنیم. در انتها Kp برابر با K[n] در الگوریتم قبل میشود و در این روش از n-1 سطر کمتر استفاده میشود که میزان حافظه استفاده شده برابر یک ماتریس با ابعاد 1 در w استفاده میشود. 
+</p>
+</font>
+
+<hr>
+<h3>
+پیاده سازی نهایی الگوریتم: 
+</h3>
+<div align='left'>
+
+```python
+def knapsack2(W, wt, val, n):
+    Kp = [0 for i in range(W + 1)]
+
+    for i in range(1, n + 1):
+        for w in range(W, 0, -1):
+            if wt[i - 1] <= w:
+                Kp[w] = max(K[w], Kp[w - wt[i - 1]] + val[i - 1])
+            else:
+                break
+    return Kp[W]
+```
+
+</div>
+
+
+<font size = '5'>
+مرتبه زمانی و حافظه مصرفی: 
+</font>
+
+<br>
+<ul>
+<li>
+<font size = '4'>
+مرتبه زمانی : O(nW)
+</li>
+<li>
+مرتبه حافظه مصرفی : O(W)
+</font>
+</li>
+</li>
+</ul>
+
+</div>
 </body>
