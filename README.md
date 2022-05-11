@@ -250,7 +250,7 @@ m ماشین اجرا کنیم به گونه ای که مجموع زمان ات�
 
 <!-- $$ min(∑_{𝑖=1}^𝑛 𝐶𝑖) $$ -->
 <div align='center'>
-<img src="https://latex.codecogs.com/png.image?\dpi{210}min(\sum_{i=1}^{n}Ci)" /> 
+<img src="https://latex.codecogs.com/png.image?\dpi{210}\color{white}min(\sum_{i=1}^{n}Ci)" /> 
 </div>
 
 که در آن c<sub>i</sub>
