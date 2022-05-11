@@ -249,8 +249,8 @@ def knapsack2(W, wt, val, n):
 m ماشین اجرا کنیم به گونه ای که مجموع زمان اتمام کارها مینیمم شود. به عبارت دیگر تابع هدف به صورت زیر است :
 
 <!-- $$ min(∑_{𝑖=1}^𝑛 𝐶𝑖) $$ -->
-- <img src="https://latex.codecogs.com/gif.latex?min(∑_{𝑖=1}^𝑛 𝐶𝑖) " /> 
-<img align='center' src="https://render.githubusercontent.com/render/math?math=min(∑_{𝑖=1}^𝑛 𝐶𝑖)">
+<img src="https://latex.codecogs.com/svg.image?min(\sum_{i=1}^{n}Ci)" /> 
+<!-- <img align='center' src="https://render.githubusercontent.com/render/math?math=min(∑_{𝑖=1}^𝑛 𝐶𝑖)"> -->
 
 که در آن c<sub>i</sub>
  زمان اتمام کار i است. همه کارها در لحظه شروع در دسترس هستند و هر ماشین در هر لحظه بیش از یک کار نمی
