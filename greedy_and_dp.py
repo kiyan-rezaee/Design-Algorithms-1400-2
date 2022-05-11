@@ -28,13 +28,3 @@ def greedy(n, m, p):
     m = [0]
     return ans
 
-
-for i in range(400):
-    m=randint(1, 1000)
-    p = sorted([randint(10, 500) for x in range(30)])
-    n = len(p)
-    a = greedy(n, m, p)
-    b = dp(n, m, p)
-    # print(a,b)
-    if a != b:
-        print('false',a, b)
